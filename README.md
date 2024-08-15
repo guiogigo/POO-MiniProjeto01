@@ -1,7 +1,7 @@
 # Programação Orientada a Objetos 2024.1
 ##  Miniprojeto
 Desenvolvido por <strong>Guilherme Viana Batista</strong>. <br>
-O projeto trata-se de um projeto utilizando dos conceitos iniciais de POO e Java como método de avaliação para a cadeira de Programação Orientada a Objetos 2024.1 da UFCA (Universidade Federal do Cariri).
+Trata-se de um projeto utilizando dos conceitos iniciais de POO e Java como método de avaliação para a cadeira de Programação Orientada a Objetos 2024.1 da UFCA (Universidade Federal do Cariri).
 
 ## Especificação:
 Vamos desenvolver um programa em Java para simular um campeonato de futebol. Nosso campeonato terá as seguintes regras:
