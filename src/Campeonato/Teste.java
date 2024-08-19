@@ -2,7 +2,7 @@ package Campeonato;
 
 import java.util.ArrayList;
 
-public class Main {
+public class Teste {
     public static void main(String[] args) {
 
         ArrayList<Clube> clubes = new ArrayList<Clube>();
@@ -11,19 +11,17 @@ public class Main {
         clubes.add(new Clube("Palmeiras"));
         clubes.add(new Clube("São Paulo"));
 
-        // o true é para debug, pode ser removido
-        Campeonato champ = new Campeonato(clubes);
+        // o true é para exibir todos os jogos, pode ser removido
+        Campeonato champ = new Campeonato(clubes, true);
         champ.getCampeao(); // Não faz nada se não tiver uma classficação
         champ.jogarCampeonato();
-        champ.getClassificacao();
+        System.out.println(champ.getClassificacao());
         champ.getCampeao();
         
+        /*
         // O campeonato pode ser rodado quantas vezes quiser
-        
         champ.jogarCampeonato();
-        champ.getClassificacao();
-        champ.getCampeao();
-        
-        
+        System.out.println(champ.getClassificacao());
+        champ.getCampeao();*/
     }
 }

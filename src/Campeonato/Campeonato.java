@@ -42,7 +42,7 @@ public class Campeonato {
 
         // Debug
         String debugVitoria = "";
-        int debugPontos = 0;
+        //int debugPontos = 0;
 
         if(golsM == golsV) {
             m.empatar();
@@ -55,31 +55,25 @@ public class Campeonato {
             v.perder(golsM - golsV);
             
             debugVitoria = m.nome;
-            debugPontos = golsM - golsV;
+            //debugPontos = golsM - golsV;
         } else {
             v.ganhar(golsV - golsM);
             m.perder(golsV - golsM);
             
             debugVitoria = v.nome;
-            debugPontos = golsV - golsM;
+            //debugPontos = golsV - golsM;
         }
 
         // Debug
         if(debug) {
-        	System.out.println("=========================");
-            System.out.println("Ganhou: " + debugVitoria);
-            System.out.println("Pontos: " + debugPontos);
-            System.out.println("T1: " + m.nome);
-            System.out.println("Pontos: " + golsM);
-            System.out.println("T2: " + v.nome);
-            System.out.println("Pontos: " + golsV);
-            System.out.println("=========================");
-            System.out.println("");
+        	//int maiorNomeDeClub = getMaiorNomeDeClube();
+            System.out.println("=> " + m.nome + " " + golsM + " x " + golsV + " " + v.nome);
+            System.out.println("| " + debugVitoria + " foi o vencedor!\n");
         }
 
     }
 
-    public void getClassificacao(){
+    public String getClassificacao(){
     	
         /* 
         Eu sei que isso seria infinitamente mais facil com Array comum
@@ -113,23 +107,49 @@ public class Campeonato {
     		clubes.remove(remover);
     		
     	}
-    	
-    	
-    	for(int i=0; i<clubesTam; i++) {
-    		System.out.println("=========================");
-    		System.out.println(classificacao[i].nome);
-    		System.out.println(classificacao[i].pontos);
-    		System.out.println(classificacao[i].saldoGols);
-    		System.out.println("=========================");
-    	}
+
+        // Aqui é pra monstar a string da tabela
+        // Eu sei que ta feio mas eu juro que faz sentido
+
+        int maiorNomeDeClub = getMaiorNomeDeClube();
+        String tabelaClassificacao = "+-"+("-".repeat(maiorNomeDeClub))+"----------"+"--------+\n";
+        tabelaClassificacao += "| NOME"+(" ".repeat(maiorNomeDeClub > 4 ? maiorNomeDeClub - 4 : 0))+" | PONTOS | SALDO |\n";
+        tabelaClassificacao += "+-"+("-".repeat(maiorNomeDeClub))+"----------"+"--------+\n";
+
+        for(int i=0; i<clubesTam; i++) {
+            tabelaClassificacao += "| " + classificacao[i].nome + (" ".repeat(maiorNomeDeClub - classificacao[i].nome.length())) + " |"
+            + "   " + (classificacao[i].pontos >= 10 ? "" : "0") + classificacao[i].pontos + "   |" 
+            + "   " + (classificacao[i].saldoGols >= 10 || classificacao[i].saldoGols < 0 ? "" : "0") + classificacao[i].saldoGols + "  |\n";
+            tabelaClassificacao += "+-"+("-".repeat(maiorNomeDeClub))+"----------"+"--------+\n";            
+        }
+
+        return tabelaClassificacao;
     	
     }
 
     public void getCampeao() {
     	if(this.classificacao[0] != null) {
-    		System.out.println("=========================");
-    		System.out.println("PARABÉNS " + classificacao[0].nome.toUpperCase() + " VOCÊ FOI O GRANDE CAMPEÃO!!!");
-    		System.out.println("=========================");
+            // Só firula
+            System.out.println("                       ___    \r");
+            System.out.println("   o__        o__     |   |\\  \r");
+            System.out.println("  /|          /\\      |   |X\\ \r");
+            System.out.println("  / > o        <\\     |   |XX\\");
+
+            String texto = "PARABÉNS " + classificacao[0].nome.toUpperCase() + " VOCÊ FOI O GRANDE CAMPEÃO!!!";
+    		System.out.println("=".repeat(texto.length()));
+    		System.out.println(texto);
+    		System.out.println("=".repeat(texto.length()));
     	}
+
+    }
+
+    private int getMaiorNomeDeClube() {
+        int maior = 0;
+        for(Clube clube : clubes){
+            if(clube.nome.length() > maior) {
+                maior = clube.nome.length();
+            }
+        }
+        return maior;
     }
 }
